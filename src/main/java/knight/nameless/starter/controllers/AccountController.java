@@ -1,6 +1,7 @@
 package knight.nameless.starter.controllers;
 
 import knight.nameless.starter.entities.Account;
+import knight.nameless.starter.models.AccountDto;
 import knight.nameless.starter.services.AccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public Account save(@RequestBody Account account) {
+    public Account save(@RequestBody AccountDto account) {
         return accountService.save(account);
     }
 

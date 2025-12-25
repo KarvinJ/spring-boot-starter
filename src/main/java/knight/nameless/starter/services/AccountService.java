@@ -1,6 +1,7 @@
 package knight.nameless.starter.services;
 
 import knight.nameless.starter.entities.Account;
+import knight.nameless.starter.models.AccountDto;
 import knight.nameless.starter.repositories.AccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,10 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public Account save(Account account){
+    public Account save(AccountDto accountDto){
 
-        return accountRepository.save(account);
+        Account accountToSave = new Account(accountDto.username(), accountDto.password());
+        return accountRepository.save(accountToSave);
     }
 
     public List<Account> getAll(){
