@@ -4,6 +4,4 @@ package knight.nameless.starter.models;
 public record AccountDto(
         String username,
         String password
-) {
-
-}
+) { }

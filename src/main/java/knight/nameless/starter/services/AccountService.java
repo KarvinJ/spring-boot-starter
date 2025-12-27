@@ -23,18 +23,15 @@ public class AccountService {
     }
 
     public List<Account> getAll(){
-
         return accountRepository.findAll();
     }
 
     public Account getById(long id){
-
         return accountRepository.findAccountById(id);
     }
 
 
     public void deleteById(Long id){
-
         accountRepository.deleteById(id);
     }
 }
