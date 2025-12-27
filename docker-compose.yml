@@ -23,7 +23,7 @@ services:
       - starter-network
 
     environment:
-      - MYSQL_DATABASE=user_details
+      - MYSQL_DATABASE=starter
       - MYSQL_ROOT_PASSWORD=root
 
     volumes:
