@@ -29,6 +29,22 @@ services:
     volumes:
       - mysql_db:/var/lib/mysql
 
+  postgres_db:
+
+    image: postgres:latest
+    container_name: postgres-container
+
+    networks:
+      - starter-network
+
+    environment:
+      - POSTGRES_DB=starter
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+
+#    volumes:
+#      - mysql_db:/var/lib/mysql
+
 volumes:
   mysql_db:
 
