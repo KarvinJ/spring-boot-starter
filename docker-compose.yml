@@ -2,7 +2,7 @@ services:
 
   ontology:
 
-    image: spring-boot-starter:latest
+    image: kerxd/spring-boot-starter:latest
     container_name: starter-container
 
     ports:
