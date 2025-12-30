@@ -1,6 +1,6 @@
 services:
 
-  ontology:
+  spring_boot:
 
     image: kerxd/spring-boot-starter:latest
     container_name: starter-container
