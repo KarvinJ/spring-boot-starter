@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Build Jar With Gradle
-        run: ./gradlew bootJar
+        run: gradlew bootJar
 
         # Setting secrets to environment variables To login in docker
       - name: Login To Docker
