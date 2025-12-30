@@ -61,6 +61,9 @@ jobs:
       - name: Grant Execute Permission For Gradlew
         run: chmod +x gradlew
 
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build
+
       - name: Build Jar With Gradle
         run: ./gradlew bootJar
 
