@@ -60,9 +60,15 @@ jobs:
       - name: Build Jar With Gradle
         run: ./gradlew bootJar
 
-      - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
-      
+        # Setting secrets to environment variables To login in docker
+      - name: Login To Docker
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+        #       Login in docker hub with my environment variable
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
       #       Build docker image and then push the image to dockerhub
       - name: Build Docker Image
         run: docker build -t kerxd/spring-boot-stater .
