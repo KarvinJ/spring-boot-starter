@@ -14,8 +14,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
 
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,16 +39,31 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
-    # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
-    # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
-    #
-    # - name: Setup Gradle
-    #   uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-    #   with:
-    #     gradle-version: '8.9'
-    #
-    # - name: Build with Gradle 8.9
-    #   run: gradle build
+
+  docker-build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Build Jar With Gradle
+        run: ./gradlew bootJar
+
+        # Setting secrets to environment variables To login in docker
+      - name: Login To Docker
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+  #       Login in docker hub with my environment variable
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+  #       Build docker image and then push the image to dockerhub
+      - name: Build Docker Image
+        run: docker build -t kerxd/spring-boot-stater .
+
+      - name: Push Docker Image
+        run: docker push kerxd/spring-boot-stater
 
   dependency-submission:
 
